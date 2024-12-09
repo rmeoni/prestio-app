@@ -5,12 +5,31 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  // Initialize state from localStorage or default values
+  // Helper functions to validate services and loans
+  const validateService = (service) => ({
+    ...service,
+    cost: Number(service.cost) || 0, // Ensure cost is a number
+    categoryId: service.categoryId || 'Unknown',
+    description: service.description || 'No description',
+  });
+
+  const validateLoan = (loan) => ({
+    ...loan,
+    amount: Number(loan.amount) || 0, // Ensure amount is a number
+    term: Number(loan.term) || 0, // Ensure term is a number
+    interestRate: Number(loan.interestRate) || 0, // Ensure interest rate is a number
+    paymentDate: loan.paymentDate || null, // Ensure paymentDate is null if missing
+    categoryId: loan.categoryId || 'Unknown',
+  });
+
+  // Initialize state with validation
   const [isAuthenticated, setIsAuthenticated] = useState(
     () => JSON.parse(localStorage.getItem('isAuthenticated')) || false
   );
-  const [services, setServices] = useState(
-    () => JSON.parse(localStorage.getItem('services')) || [
+
+  const [services, setServices] = useState(() => {
+    const storedServices = JSON.parse(localStorage.getItem('services'));
+    const defaultServices = [
       {
         id: '201',
         name: 'Servicio A',
@@ -43,10 +62,15 @@ const AuthProvider = ({ children }) => {
         paymentDate: '2024-12-25',
         categoryId: '4',
       },
-    ]
-  );
-  const [loans, setLoans] = useState(
-    () => JSON.parse(localStorage.getItem('loans')) || [
+    ];
+
+    // Validate stored services or fallback to default
+    return (storedServices || defaultServices).map(validateService);
+  });
+
+  const [loans, setLoans] = useState(() => {
+    const storedLoans = JSON.parse(localStorage.getItem('loans'));
+    const defaultLoans = [
       {
         id: '101',
         name: 'Préstamo A',
@@ -91,8 +115,11 @@ const AuthProvider = ({ children }) => {
         paymentDate: '2025-12-01',
         categoryId: '4',
       },
-    ]
-  );
+    ];
+
+    // Validate stored loans or fallback to default
+    return (storedLoans || defaultLoans).map(validateLoan);
+  });
 
   // Save state to localStorage whenever it changes
   useEffect(() => {
@@ -101,6 +128,7 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem('loans', JSON.stringify(loans));
   }, [isAuthenticated, services, loans]);
 
+  // Authentication functions
   const login = () => setIsAuthenticated(true);
   const logout = () => {
     setIsAuthenticated(false);
@@ -109,16 +137,15 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('loans');
   };
 
+  // Add service with validation
   const addService = (service) => {
-    setServices((prevServices) => [
-      ...prevServices,
-      {
-        ...service,
-        cost: Number(service.cost) || 0, // Ensure cost is a valid number
-      },
-    ]);
+    setServices((prevServices) => [...prevServices, validateService(service)]);
   };
-  
+
+  // Add loan with validation
+  const addLoan = (loan) => {
+    setLoans((prevLoans) => [...prevLoans, validateLoan(loan)]);
+  };
 
   return (
     <AuthContext.Provider
@@ -130,6 +157,7 @@ const AuthProvider = ({ children }) => {
         addService,
         setServices,
         loans,
+        addLoan,
         setLoans,
       }}
     >
