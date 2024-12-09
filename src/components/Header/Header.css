@@ -1,0 +1,62 @@
+.header-container {
+  background-color: #023047;
+  padding: 40px 0px;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-content {
+  width: 100%;
+  max-width: 324px;
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center;
+  position: relative; /* To position child elements like bell icon */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-logo {
+  text-align: center;
+}
+
+.header-logo img {
+  height: 40px;
+}
+
+/* Bell Icon */
+.header-bell {
+  position: absolute; /* Position the bell independently of the layout */
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically relative to the header */
+  cursor: pointer;
+}
+
+.bell-icon {
+  cursor: pointer;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 30px; /* Adjust to position the dropdown below the bell icon */
+  right: 0;
+  width: 160px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+}
+
+.notification-dropdown p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+  text-align: center;
+}

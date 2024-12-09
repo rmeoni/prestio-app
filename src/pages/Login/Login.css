@@ -1,0 +1,25 @@
+#login {
+    width: 324px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#login h1 {
+    text-align: center;
+}
+
+.certificates {
+    margin-top: 76px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.certificates #security-certificates {
+    height: 46px;
+    margin-bottom: 20px;
+}

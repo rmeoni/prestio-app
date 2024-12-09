@@ -1,0 +1,117 @@
+/* src/styles/global.css */
+:root {
+  --primary-100: #023047;
+  --secondary-100: #F46D0F;
+  --text: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-100);
+  color: var(--text);
+  padding-bottom: 40px;
+}
+
+h1 {
+  font-family: fieldwork, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 48px;
+  line-height: 56px;
+}
+
+h2 {
+  font-family: fieldwork, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+h3 {
+  font-family: fieldwork, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+p.large {
+  font-family: fieldwork, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+p {
+  font-family: "kulturista-web", serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+p.bold {
+  font-family: "kulturista-web", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+label {
+  font-family: fieldwork, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+input {
+  background: #023047;
+  color: #ffffff;
+  border: 2px solid #fff;
+  border-radius: 0px;
+  height: 40px;
+  width: 312px;
+  font-family: "kulturista-web", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 0px 0px 0px 12px;
+
+}
+
+input::-webkit-input-placeholder {
+  color: #9AACB5;
+  font-family: "kulturista-web", serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 14px;
+
+}
+
+input:focus {
+  outline: none; /* Removes the outline */
+  box-shadow: none; /* Removes any shadow that appears */
+}
+
+.primary-button {
+  width: 324px !important;
+  min-height: 64px;
+  margin-top: 40px;
+  background-color: #F46D0F;
+  color: #fff;
+  text-transform: capitalize;
+  font-family: fieldwork, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  border: none;
+  cursor: pointer;
+}

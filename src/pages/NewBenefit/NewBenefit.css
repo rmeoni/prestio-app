@@ -1,0 +1,49 @@
+.new-benefits-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .new-benefits-container h1 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #023047;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .benefit-button {
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .loan-button {
+    background-color: #f46d0f;
+    color: #fff;
+    border: 2px solid #f46d0f;
+  }
+  
+  .loan-button:hover {
+    background-color: #fff;
+    color: #f46d0f;
+  }
+  
+  .service-button {
+    background-color: #023047;
+    color: #fff;
+    border: 2px solid #023047;
+  }
+  
+  .service-button:hover {
+    background-color: #fff;
+    color: #023047;
+  }
+  

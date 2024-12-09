@@ -1,0 +1,37 @@
+.service-details-container {
+    padding: 20px;
+    text-align: center;
+}
+
+p {
+    margin: 10px 0;
+}
+
+p strong {
+    font-weight: bold;
+}
+
+.service-details-container button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.service-details-container button:first-child {
+    background-color: #F46D0F;
+    color: #fff;
+}
+
+.service-details-container button:last-child {
+    background-color: #ff4d4d;
+    color: #fff;
+}
+
+input {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

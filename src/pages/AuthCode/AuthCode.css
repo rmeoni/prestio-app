@@ -1,0 +1,33 @@
+.auth-code-container {
+    text-align: center;
+    max-width: 324px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  
+  .auth-code-container .code-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .auth-code-container .code-inputs input {
+    width: 72px;
+    height: 72px;
+    font-size: 24px;
+    text-align: center;
+    border: 2px solid #fff;
+    padding-left:0px;
+
+  }
+  
+  .auth-code-container .code-inputs input:focus {
+    outline: none;
+    border-color: #f46d0f;
+  }
+  
+  .auth-code-container p {
+    margin: 10px 0;
+  }
+  
