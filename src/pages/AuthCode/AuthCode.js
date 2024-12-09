@@ -48,7 +48,7 @@ const AuthCode = () => {
     <div className="auth-code-container">
       <img src="/images/ImageAuth.svg" alt="Pattern Background" />
       <h1>Código De Autenticación</h1>
-      <p class="large">Ingresa el código de autenticación enviado:</p>
+      <p className="large">Ingresa el código de autenticación enviado:</p>
       <form onSubmit={handleSubmit}>
         <div className="code-inputs">
           {authCode.map((digit, index) => (
@@ -62,11 +62,11 @@ const AuthCode = () => {
             />
           ))}
         </div>
-        <p class="large">Código actual: <strong>{generatedCode}</strong></p>
+        <p className="large">Código actual: <strong>{generatedCode}</strong></p>
         <p>(El código se actualiza cada 60 segundos)</p>
-        <button class="primary-button" type="submit">Verificar</button>
+        <button className="primary-button" type="submit">Verificar</button>
       </form>
-      <div class="certificates">
+      <div className="certificates">
         <img id="security-certificates" src="/images/certificates.png" alt="Security Certificates" />
         <img src="/images/LogoSmall.svg" alt="Prestio Logo" />
       </div>

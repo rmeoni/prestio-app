@@ -60,24 +60,25 @@ const Dashboard = () => {
     <div>
       <h2>Resumen de Préstamos</h2>
       {loans.length > 0 ? (
-        <ul className="item-list">
+        <ul className="item-list" id="summary-item">
           {loans.map((loan) => {
             const category = findCategory(loanCategories, loan.categoryId); // Get loan category
             return (
-              <li key={loan.id}>
-                {category?.iconUrl && (
-                  <img
-                    src={category.iconUrl}
-                    alt={category.name}
-                    className="category-icon"
-                  />
-                )}
-                <p><strong>Nombre:</strong> {loan.name}</p>
-                <p><strong>Categoría:</strong> {category?.name || 'Sin Categoría'}</p>
-                <p><strong>Monto:</strong> ${loan.amount.toFixed(2)}</p>
-                <p><strong>Estado:</strong> {loan.status}</p>
-                <Link to={`/loan-details/${loan.id}`}>Ver Detalles</Link>
-              </li>
+              <Link to={`/loan-details/${loan.id}`} className="list-item-link">
+                <li key={loan.id}>
+                  {category?.iconUrl && (
+                    <img
+                      src={category.iconUrl}
+                      alt={category.name}
+                      className="category-icon"
+                    />
+                  )}
+                  <p><strong>Nombre:</strong> {loan.name}</p>
+                  <p><strong>Categoría:</strong> {category?.name || 'Sin Categoría'}</p>
+                  <p><strong>Monto:</strong> ${loan.amount.toFixed(2)}</p>
+                  <p><strong>Estado:</strong> {loan.status}</p>
+                </li>
+              </Link>
             );
           })}
         </ul>
@@ -118,38 +119,11 @@ const Dashboard = () => {
     <div>
       <h2>Resumen de Servicios</h2>
       {services.length > 0 ? (
-        <ul className="item-list">
+        <ul className="item-list" id="summary-item">
           {services.map((service) => {
             const category = findCategory(serviceCategories, service.categoryId); // Get service category
             return (
-              <li key={service.id}>
-                {category?.iconUrl && (
-                  <img
-                    src={category.iconUrl}
-                    alt={category.name}
-                    className="category-icon"
-                  />
-                )}
-                <p><strong>Nombre:</strong> {service.name}</p>
-                <p><strong>Categoría:</strong> {category?.name || 'Sin Categoría'}</p>
-                <p><strong>Costo:</strong> ${service.cost.toFixed(2)}</p>
-                <p><strong>Descripción:</strong> {service.description}</p>
-                <Link to={`/service-details/${service.id}`}>Ver Detalles</Link>
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        <p>No hay servicios disponibles.</p>
-      )}
-      <h2>Próximos Pagos de Servicios</h2>
-      {services.filter((service) => service.paymentDate).length > 0 ? (
-        <ul className="item-list">
-          {services
-            .filter((service) => service.paymentDate)
-            .map((service) => {
-              const category = findCategory(serviceCategories, service.categoryId);
-              return (
+              <Link to={`/service-details/${service.id}`} className="list-item-link">
                 <li key={service.id}>
                   {category?.iconUrl && (
                     <img
@@ -158,18 +132,49 @@ const Dashboard = () => {
                       className="category-icon"
                     />
                   )}
-                  <p><strong>Servicio:</strong> {service.name}</p>
-                  <p><strong>Fecha de Pago:</strong> {service.paymentDate}</p>
-                  <p><strong>Monto:</strong> ${service.cost.toFixed(2)}</p>
-                  <Link to={`/service-details/${service.id}`}>Ver Detalles</Link>
+                  <p><strong>Nombre:</strong> {service.name}</p>
+                  <p><strong>Categoría:</strong> {category?.name || 'Sin Categoría'}</p>
+                  <p><strong>Costo:</strong> ${service.cost.toFixed(2)}</p>
+                  <p><strong>Descripción:</strong> {service.description}</p>
                 </li>
-              );
-            })}
+              </Link>
+            );
+          })}
         </ul>
       ) : (
-        <p>No hay próximos pagos de servicios.</p>
-      )}
-    </div>
+        <p>No hay servicios disponibles.</p>
+      )
+      }
+      <h2>Próximos Pagos de Servicios</h2>
+      {
+        services.filter((service) => service.paymentDate).length > 0 ? (
+          <ul className="item-list">
+            {services
+              .filter((service) => service.paymentDate)
+              .map((service) => {
+                const category = findCategory(serviceCategories, service.categoryId);
+                return (
+                  <li key={service.id}>
+                    {category?.iconUrl && (
+                      <img
+                        src={category.iconUrl}
+                        alt={category.name}
+                        className="category-icon"
+                      />
+                    )}
+                    <p><strong>Servicio:</strong> {service.name}</p>
+                    <p><strong>Fecha de Pago:</strong> {service.paymentDate}</p>
+                    <p><strong>Monto:</strong> ${service.cost.toFixed(2)}</p>
+                    <Link to={`/service-details/${service.id}`}>Ver Detalles</Link>
+                  </li>
+                );
+              })}
+          </ul>
+        ) : (
+          <p>No hay próximos pagos de servicios.</p>
+        )
+      }
+    </div >
   );
 
   return (
@@ -210,6 +215,7 @@ const Dashboard = () => {
         <button
           className={view === 'services' ? 'active' : ''}
           onClick={() => setView('services')}
+          id="rightButton"
         >
           Servicios
         </button>

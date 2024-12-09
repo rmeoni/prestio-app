@@ -27,7 +27,7 @@ const Login = () => {
       <h1>Iniciar Sesión</h1>
       <form onSubmit={handleLogin}>
         <div>
-          <label htmlFor="email"><p class="large">Correo Electrónico</p></label>
+          <label htmlFor="email"><p className="large">Correo Electrónico</p></label>
           <input
             type="email"
             id="email"
@@ -37,7 +37,7 @@ const Login = () => {
           />
         </div>
         <div>
-          <label htmlFor="password"><p class="large">Contraseña</p></label>
+          <label htmlFor="password"><p className="large">Contraseña</p></label>
           <input
             type="password"
             id="password"
@@ -47,9 +47,9 @@ const Login = () => {
           />
         </div>
         {error && <p style={{ color: '#E3A4A5' }}>{error}</p>}
-        <button type="submit" class="primary-button ">Iniciar Sesión</button>
+        <button type="submit" className="primary-button ">Iniciar Sesión</button>
       </form>
-      <div class="certificates">
+      <div className="certificates">
         <img id="security-certificates" src="/images/certificates.png" alt="Security Certificates" />
         <img src="/images/LogoSmall.svg" alt="Prestio Logo" />
       </div>
