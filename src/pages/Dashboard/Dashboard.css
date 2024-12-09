@@ -45,8 +45,9 @@
 .item-list li {
   margin: 10px 0;
   padding: 10px;
-  border: 1px solid #ccc;
+  border-top: 1px solid #9AACB5;
 }
+
 
 .item-list li p {
   margin: 5px 0;
@@ -121,6 +122,13 @@
   font-size: 16px;
   margin-left: auto;
   margin-right: auto;
+  font-family: fieldwork, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: #fff;
 }
 
 .search-bar input::-webkit-input-placeholder {
