@@ -66,17 +66,15 @@ const Dashboard = () => {
             return (
               <Link to={`/loan-details/${loan.id}`} className="list-item-link">
                 <li key={loan.id}>
+                  <p className='bold'>{category?.name || 'Sin Categoría'}</p>
                   {category?.iconUrl && (
-                    <>
-                      <img
-                        src={category.iconUrl}
-                        alt={category.name}
-                        className="category-icon"
-                      />
-                      <p>{category?.name || 'Sin Categoría'}</p>
-                    </>
+                    <img
+                      src={category.iconUrl}
+                      alt={category.name}
+                      className="category-icon"
+                    />
                   )}
-                  <p>${loan.amount.toFixed(2)}</p>
+                  <p className="large">${loan.amount.toFixed(2)}</p>
                   <p>{new Date(loan.paymentDate).toLocaleDateString('es-ES', {
                     day: '2-digit',
                     month: '2-digit',
@@ -130,17 +128,16 @@ const Dashboard = () => {
             return (
               <Link to={`/service-details/${service.id}`} className="list-item-link">
                 <li key={service.id}>
+                  <p className="bold"> {category?.name || 'Sin Categoría'}</p>
                   {category?.iconUrl && (
-                    <>
-                      <img
-                        src={category.iconUrl}
-                        alt={category.name}
-                        className="category-icon"
-                      />
-                      <p> {category?.name || 'Sin Categoría'}</p>
-                    </>
+                    <img
+                      src={category.iconUrl}
+                      alt={category.name}
+                      className="category-icon"
+                    />
+
                   )}
-                  <p> ${service.cost.toFixed(2)}</p>
+                  <p className="large"> ${service.cost.toFixed(2)}</p>
                 </li>
               </Link>
             );

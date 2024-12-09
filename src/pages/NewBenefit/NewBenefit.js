@@ -7,10 +7,10 @@ const NewBenefit = () => {
     <div className="new-benefit-container">
       <h1>Crear Nuevo Beneficio</h1>
       <div className="button-group">
-        <Link to="/new-loan" className="benefit-button loan-button">
+        <Link to="/new-loan" className="primary-button">
           Nuevo Préstamo
         </Link>
-        <Link to="/new-service" className="benefit-button service-button">
+        <Link to="/new-service" className="primary-button" id="service-button">
           Nuevo Servicio
         </Link>
       </div>

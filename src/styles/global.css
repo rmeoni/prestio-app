@@ -114,4 +114,8 @@ input:focus {
   line-height: 20px;
   border: none;
   cursor: pointer;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
