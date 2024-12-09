@@ -110,8 +110,15 @@ const AuthProvider = ({ children }) => {
   };
 
   const addService = (service) => {
-    setServices((prevServices) => [...prevServices, service]);
+    setServices((prevServices) => [
+      ...prevServices,
+      {
+        ...service,
+        cost: Number(service.cost) || 0, // Ensure cost is a valid number
+      },
+    ]);
   };
+  
 
   return (
     <AuthContext.Provider

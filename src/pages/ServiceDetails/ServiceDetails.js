@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { serviceTransactions } from '../../mockData/transactions'; // Import the named export
-import { transactionCategories } from '../../mockData/categories'; // Import transaction categories
+import { serviceTransactions } from '../../mockData/transactions';
+import { transactionCategories } from '../../mockData/categories';
 import './ServiceDetails.css';
 
 const ServiceDetails = () => {
@@ -18,9 +18,12 @@ const ServiceDetails = () => {
     return <p>El servicio no existe.</p>;
   }
 
+  // Ensure cost is treated as a number
+  const serviceCost = Number(service.cost) || 0;
+
   // Filter transactions for the current service
   const transactions = serviceTransactions.filter(
-    (transaction) => transaction.serviceId === parseInt(id, 10) // Ensure type match
+    (transaction) => transaction.serviceId === id
   );
 
   // Helper function to find the category for a transaction type
@@ -40,7 +43,7 @@ const ServiceDetails = () => {
 
   const handleSave = () => {
     const updatedServices = services.map((s) =>
-      s.id === id ? editedService : s
+      s.id === id ? { ...editedService, cost: Number(editedService.cost) || 0 } : s
     );
     setServices(updatedServices);
     setIsEditing(false);
@@ -76,7 +79,7 @@ const ServiceDetails = () => {
       ) : (
         <>
           <p><strong>Nombre:</strong> {service.name}</p>
-          <p><strong>Costo:</strong> ${service.cost.toFixed(2)}</p>
+          <p><strong>Costo:</strong> ${serviceCost.toFixed(2)}</p>
           <p><strong>Descripción:</strong> {service.description}</p>
           <button onClick={handleEdit}>Editar</button>
         </>
@@ -88,7 +91,7 @@ const ServiceDetails = () => {
       {transactions.length > 0 ? (
         <ul className="transaction-list">
           {transactions.map((transaction) => {
-            const category = findTransactionCategory(transaction.type); // Get transaction category
+            const category = findTransactionCategory(transaction.type);
             return (
               <li key={transaction.id} className="transaction-item">
                 {category?.iconUrl && (
@@ -99,7 +102,7 @@ const ServiceDetails = () => {
                   />
                 )}
                 <p><strong>Fecha:</strong> {transaction.date}</p>
-                <p><strong>Monto:</strong> ${transaction.amount.toFixed(2)}</p>
+                <p><strong>Monto:</strong> ${transaction.amount?.toFixed(2) || '0.00'}</p>
                 <p><strong>Descripción:</strong> {transaction.description}</p>
                 <p><strong>Tipo:</strong> {category?.name || 'Sin Categoría'}</p>
               </li>

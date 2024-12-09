@@ -64,9 +64,9 @@ const Dashboard = () => {
           {loans.map((loan) => {
             const category = findCategory(loanCategories, loan.categoryId); // Get loan category
             return (
-              <Link to={`/loan-details/${loan.id}`} className="list-item-link">
-                <li key={loan.id}>
-                  <p className='bold'>{category?.name || 'Sin Categoría'}</p>
+              <Link to={`/loan-details/${loan.id}`} className="list-item-link" key={loan.id}>
+                <li>
+                  <p className="bold">{category?.name || 'Sin Categoría'}</p>
                   {category?.iconUrl && (
                     <img
                       src={category.iconUrl}
@@ -126,18 +126,17 @@ const Dashboard = () => {
           {services.map((service) => {
             const category = findCategory(serviceCategories, service.categoryId); // Get service category
             return (
-              <Link to={`/service-details/${service.id}`} className="list-item-link">
-                <li key={service.id}>
-                  <p className="bold"> {category?.name || 'Sin Categoría'}</p>
+              <Link to={`/service-details/${service.id}`} className="list-item-link" key={service.id}>
+                <li>
+                  <p className="bold">{category?.name || 'Sin Categoría'}</p>
                   {category?.iconUrl && (
                     <img
                       src={category.iconUrl}
                       alt={category.name}
                       className="category-icon"
                     />
-
                   )}
-                  <p className="large"> ${service.cost.toFixed(2)}</p>
+                  <p className="large">${Number(service.cost)?.toFixed(2) || '0.00'}</p>
                 </li>
               </Link>
             );
@@ -145,38 +144,35 @@ const Dashboard = () => {
         </ul>
       ) : (
         <p>No hay servicios disponibles.</p>
-      )
-      }
+      )}
       <h2>Próximos Pagos de Servicios</h2>
-      {
-        services.filter((service) => service.paymentDate).length > 0 ? (
-          <ul className="item-list">
-            {services
-              .filter((service) => service.paymentDate)
-              .map((service) => {
-                const category = findCategory(serviceCategories, service.categoryId);
-                return (
-                  <li key={service.id}>
-                    {category?.iconUrl && (
-                      <img
-                        src={category.iconUrl}
-                        alt={category.name}
-                        className="category-icon"
-                      />
-                    )}
-                    <p><strong>Servicio:</strong> {service.name}</p>
-                    <p><strong>Fecha de Pago:</strong> {service.paymentDate}</p>
-                    <p><strong>Monto:</strong> ${service.cost.toFixed(2)}</p>
-                    <Link to={`/service-details/${service.id}`}>Ver Detalles</Link>
-                  </li>
-                );
-              })}
-          </ul>
-        ) : (
-          <p>No hay próximos pagos de servicios.</p>
-        )
-      }
-    </div >
+      {services.filter((service) => service.paymentDate).length > 0 ? (
+        <ul className="item-list">
+          {services
+            .filter((service) => service.paymentDate)
+            .map((service) => {
+              const category = findCategory(serviceCategories, service.categoryId);
+              return (
+                <li key={service.id}>
+                  {category?.iconUrl && (
+                    <img
+                      src={category.iconUrl}
+                      alt={category.name}
+                      className="category-icon"
+                    />
+                  )}
+                  <p><strong>Servicio:</strong> {service.name}</p>
+                  <p><strong>Fecha de Pago:</strong> {service.paymentDate}</p>
+                  <p><strong>Monto:</strong> ${service.cost.toFixed(2)}</p>
+                  <Link to={`/service-details/${service.id}`}>Ver Detalles</Link>
+                </li>
+              );
+            })}
+        </ul>
+      ) : (
+        <p>No hay próximos pagos de servicios.</p>
+      )}
+    </div>
   );
 
   return (
@@ -189,7 +185,9 @@ const Dashboard = () => {
           value={searchQuery}
           onChange={handleSearch}
         />
-        <span className="search-icon" role="img" aria-label="search"><img src="/images/IconSearch.svg" alt="Search Icon" /></span>
+        <span className="search-icon" role="img" aria-label="search">
+          <img src="/images/IconSearch.svg" alt="Search Icon" />
+        </span>
         {searchResults.length > 0 && (
           <div className="search-dropdown">
             {searchResults.map((result) => (
@@ -200,7 +198,7 @@ const Dashboard = () => {
               >
                 <p>{result.name}</p>
                 <small>
-                  {result.amount ? 'Préstamo' : 'Servicio'} {/* Identify type */}
+                  {result.amount ? 'Préstamo' : 'Servicio'}
                 </small>
               </div>
             ))}
