@@ -89,14 +89,24 @@ const Dashboard = () => {
         <ul className="item-list">
           {loans
             .filter((loan) => loan.paymentDate)
-            .map((loan) => (
-              <li key={loan.id}>
-                <p><strong>Préstamo:</strong> {loan.name}</p>
-                <p><strong>Fecha de Pago:</strong> {loan.paymentDate}</p>
-                <p><strong>Monto:</strong> ${(loan.amount / loan.term).toFixed(2)}</p>
-                <Link to={`/loan-details/${loan.id}`}>Ver Detalles</Link>
-              </li>
-            ))}
+            .map((loan) => {
+              const category = findCategory(loanCategories, loan.categoryId);
+              return (
+                <li key={loan.id}>
+                  {category?.iconUrl && (
+                    <img
+                      src={category.iconUrl}
+                      alt={category.name}
+                      className="category-icon"
+                    />
+                  )}
+                  <p><strong>Préstamo:</strong> {loan.name}</p>
+                  <p><strong>Fecha de Pago:</strong> {loan.paymentDate}</p>
+                  <p><strong>Monto:</strong> ${(loan.amount / loan.term).toFixed(2)}</p>
+                  <Link to={`/loan-details/${loan.id}`}>Ver Detalles</Link>
+                </li>
+              );
+            })}
         </ul>
       ) : (
         <p>No hay próximos pagos de préstamos.</p>
@@ -137,14 +147,24 @@ const Dashboard = () => {
         <ul className="item-list">
           {services
             .filter((service) => service.paymentDate)
-            .map((service) => (
-              <li key={service.id}>
-                <p><strong>Servicio:</strong> {service.name}</p>
-                <p><strong>Fecha de Pago:</strong> {service.paymentDate}</p>
-                <p><strong>Monto:</strong> ${service.cost.toFixed(2)}</p>
-                <Link to={`/service-details/${service.id}`}>Ver Detalles</Link>
-              </li>
-            ))}
+            .map((service) => {
+              const category = findCategory(serviceCategories, service.categoryId);
+              return (
+                <li key={service.id}>
+                  {category?.iconUrl && (
+                    <img
+                      src={category.iconUrl}
+                      alt={category.name}
+                      className="category-icon"
+                    />
+                  )}
+                  <p><strong>Servicio:</strong> {service.name}</p>
+                  <p><strong>Fecha de Pago:</strong> {service.paymentDate}</p>
+                  <p><strong>Monto:</strong> ${service.cost.toFixed(2)}</p>
+                  <Link to={`/service-details/${service.id}`}>Ver Detalles</Link>
+                </li>
+              );
+            })}
         </ul>
       ) : (
         <p>No hay próximos pagos de servicios.</p>
@@ -185,7 +205,7 @@ const Dashboard = () => {
           className={view === 'loans' ? 'active' : ''}
           onClick={() => setView('loans')}
         >
-            Préstamos
+          Préstamos
         </button>
         <button
           className={view === 'services' ? 'active' : ''}
