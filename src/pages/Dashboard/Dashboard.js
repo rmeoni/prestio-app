@@ -67,16 +67,17 @@ const Dashboard = () => {
               <Link to={`/loan-details/${loan.id}`} className="list-item-link">
                 <li key={loan.id}>
                   {category?.iconUrl && (
-                    <img
-                      src={category.iconUrl}
-                      alt={category.name}
-                      className="category-icon"
-                    />
+                    <>
+                      <img
+                        src={category.iconUrl}
+                        alt={category.name}
+                        className="category-icon"
+                      />
+                      <p>{category?.name || 'Sin Categoría'}</p>
+                    </>
                   )}
-                  <p><strong>Nombre:</strong> {loan.name}</p>
-                  <p><strong>Categoría:</strong> {category?.name || 'Sin Categoría'}</p>
-                  <p><strong>Monto:</strong> ${loan.amount.toFixed(2)}</p>
-                  <p><strong>Estado:</strong> {loan.status}</p>
+                  <p>${loan.amount.toFixed(2)}</p>
+                  <p>{loan.date}</p>
                 </li>
               </Link>
             );
@@ -126,16 +127,16 @@ const Dashboard = () => {
               <Link to={`/service-details/${service.id}`} className="list-item-link">
                 <li key={service.id}>
                   {category?.iconUrl && (
-                    <img
-                      src={category.iconUrl}
-                      alt={category.name}
-                      className="category-icon"
-                    />
+                    <>
+                      <img
+                        src={category.iconUrl}
+                        alt={category.name}
+                        className="category-icon"
+                      />
+                      <p> {category?.name || 'Sin Categoría'}</p>
+                    </>
                   )}
-                  <p><strong>Nombre:</strong> {service.name}</p>
-                  <p><strong>Categoría:</strong> {category?.name || 'Sin Categoría'}</p>
-                  <p><strong>Costo:</strong> ${service.cost.toFixed(2)}</p>
-                  <p><strong>Descripción:</strong> {service.description}</p>
+                  <p> ${service.cost.toFixed(2)}</p>
                 </li>
               </Link>
             );

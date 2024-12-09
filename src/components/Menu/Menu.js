@@ -33,7 +33,7 @@ const Menu = () => {
 
   return (
     <>
-      <div class="menu">
+      <div className="menu">
         <div className="menu-container">
           <Link to="/profile" className="menu-item">
             <span className="menu-icon"><img src="/images/IconProfile.svg" alt="Profile Icon"/></span>
