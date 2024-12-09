@@ -57,7 +57,7 @@ const Dashboard = () => {
   };
 
   const renderLoans = () => (
-    <div>
+    <div className="summary">
       <h2>Resumen de Préstamos</h2>
       {loans.length > 0 ? (
         <ul className="item-list" id="summary-item">
@@ -119,7 +119,7 @@ const Dashboard = () => {
   );
 
   const renderServices = () => (
-    <div>
+    <div className="summary">
       <h2>Resumen de Servicios</h2>
       {services.length > 0 ? (
         <ul className="item-list" id="summary-item">

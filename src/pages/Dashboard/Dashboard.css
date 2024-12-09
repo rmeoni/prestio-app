@@ -33,6 +33,10 @@
   color: #fff;
 }
 
+.summary h2 {
+  text-align: left;
+}
+
 .item-list {
   list-style: none;
   padding: 0;
