@@ -77,7 +77,7 @@ const Dashboard = () => {
                     </>
                   )}
                   <p>${loan.amount.toFixed(2)}</p>
-                  <p>{loan.date}</p>
+                  <p>{loan.paymentDate}</p>
                 </li>
               </Link>
             );
@@ -188,6 +188,7 @@ const Dashboard = () => {
           value={searchQuery}
           onChange={handleSearch}
         />
+        <span className="search-icon" role="img" aria-label="search"><img src="/images/IconSearch.svg" alt="Search Icon"/></span>
         {searchResults.length > 0 && (
           <div className="search-dropdown">
             {searchResults.map((result) => (
