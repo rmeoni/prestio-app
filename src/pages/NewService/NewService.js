@@ -57,7 +57,7 @@ const NewService = () => {
             onChange={(e) => setServiceCost(e.target.value)}
           />
         </div>
-        <button type="submit" className="submit-button">Agregar Servicio</button>
+        <button type="submit" className="primary-button">Agregar Servicio</button>
       </form>
 
       {successMessage && (

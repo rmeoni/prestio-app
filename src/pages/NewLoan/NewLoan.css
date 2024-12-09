@@ -1,6 +1,9 @@
 .new-loan-container {
     padding: 20px;
     text-align: center;
+    max-width: 324px;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .form-group {

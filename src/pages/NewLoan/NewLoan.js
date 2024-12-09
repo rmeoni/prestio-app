@@ -51,12 +51,12 @@ const NewLoan = () => {
           />
         </div>
         {error && <p className="error">{error}</p>}
-        <button type="submit" className="submit-button">Calcular</button>
+        <button type="submit" className="primary-button">Calcular</button>
       </form>
       {monthlyPayment && (
         <div className="result">
-          <h3>Resultado:</h3>
-          <p>Pago mensual estimado: ${monthlyPayment}</p>
+          <h3>Cuota Mensual:</h3>
+          <h1>${monthlyPayment}</h1>
         </div>
       )}
     </div>
