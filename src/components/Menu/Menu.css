@@ -14,12 +14,14 @@
 .menu-container {
   width: 100%;
   display: flex;
-  max-width: 323px;
+  max-width: 393px;
   margin-left: auto;
   margin-right: auto;
   background-color: #02293C;
   padding-top: 24px;
   padding-bottom: 16px;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu-item {

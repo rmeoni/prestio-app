@@ -74,7 +74,7 @@ const Dashboard = () => {
                       className="category-icon"
                     />
                   )}
-                  <p className="large">${loan.amount.toFixed(2)}</p>
+                  <h3>${loan.amount.toFixed(2)}</h3>
                   <p>{new Date(loan.paymentDate).toLocaleDateString('es-ES', {
                     day: '2-digit',
                     month: '2-digit',
@@ -96,26 +96,34 @@ const Dashboard = () => {
             .map((loan) => {
               const category = findCategory(loanCategories, loan.categoryId);
               return (
-                <li key={loan.id}>
-                  {category?.iconUrl && (
-                    <img
-                      src={category.iconUrl}
-                      alt={category.name}
-                      className="category-icon"
-                    />
-                  )}
-                  <p><strong>Préstamo:</strong> {loan.name}</p>
-                  <p><strong>Fecha de Pago:</strong> {loan.paymentDate}</p>
-                  <p><strong>Monto:</strong> ${(loan.amount / loan.term).toFixed(2)}</p>
-                  <Link to={`/loan-details/${loan.id}`}>Ver Detalles</Link>
-                </li>
+                <Link to={`/loan-details/${loan.id}`} id="transaction">
+                  <li key={loan.id}>
+                    {category?.iconUrl && (
+                      <img
+                        src={category.iconUrl}
+                        alt={category.name}
+                        className="category-icon"
+                      />
+                    )}
+                    <div>
+                      <p className="bold">{category?.name || 'Sin Categoría'}</p>
+                      <p>{new Date(loan.paymentDate).toLocaleDateString('es-ES', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                      })}</p>
+                    </div>
+                    <p>${(loan.amount / loan.term).toFixed(2)}</p>
+                  </li>
+                </Link>
               );
             })}
         </ul>
       ) : (
         <p>No hay próximos pagos de préstamos.</p>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 
   const renderServices = () => (
@@ -136,7 +144,7 @@ const Dashboard = () => {
                       className="category-icon"
                     />
                   )}
-                  <p className="large">${Number(service.cost)?.toFixed(2) || '0.00'}</p>
+                  <h3>${Number(service.cost)?.toFixed(2) || '0.00'}</h3>
                 </li>
               </Link>
             );
@@ -153,26 +161,30 @@ const Dashboard = () => {
             .map((service) => {
               const category = findCategory(serviceCategories, service.categoryId);
               return (
-                <li key={service.id}>
-                  {category?.iconUrl && (
-                    <img
-                      src={category.iconUrl}
-                      alt={category.name}
-                      className="category-icon"
-                    />
-                  )}
-                  <p><strong>Servicio:</strong> {service.name}</p>
-                  <p><strong>Fecha de Pago:</strong> {service.paymentDate}</p>
-                  <p><strong>Monto:</strong> ${service.cost.toFixed(2)}</p>
-                  <Link to={`/service-details/${service.id}`}>Ver Detalles</Link>
-                </li>
+                <Link to={`/service-details/${service.id}`} id="transaction">
+                  <li key={service.id}>
+                    {category?.iconUrl && (
+                      <img
+                        src={category.iconUrl}
+                        alt={category.name}
+                        className="category-icon"
+                      />
+                    )}
+                    <div>
+                      <p className="bold">{category?.name || 'Sin Categoría'}</p>
+                      <p>{service.paymentDate}</p>
+                    </div>
+                    <p>${service.cost.toFixed(2)}</p>
+                  </li>
+                </Link>
               );
             })}
         </ul>
       ) : (
         <p>No hay próximos pagos de servicios.</p>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 
   return (
